@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <main>
+        <div>
+            <article>
+                <h2><%= hike.hikeName %></h2>
+                <p>Rank: <%= hike.rank %></p>
+                <p>Elevation: <%= hike.elevation %> ft</p>
+                <p>Completed: <%= hike.hikeComplete ? "Yes" : "No" %></p>
+                <% if (hike.hikeComplete) { %>
+                    <p>Date Completed: <%= hike.dateComplete.toDateString() %></p>
+                <% } %>
+                <a href="/hikes/<%= hike._id %>/edit"><button>Edit Hike</button></a>
+                <form action="/hikes/<%= hike._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <input type="submit" value="Delete Hike"/>
+                </form>
+                <a href="/hikes"><button>Back to All Hikes</button></a>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
