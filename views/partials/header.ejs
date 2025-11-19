@@ -2,11 +2,32 @@
 <header>
   <h1>The Hike Tracker App</h1>
 
-  <div class="buttons">
-            <!-- <a href="/hikes"><button>Back to Main</button></a> -->
-            <!-- <a href="/hikes/new"><button class="newHike">Create New Adventure</button></a> -->
-            <!-- <a href="/user/signup"><button>Signup</button></a> -->
-            <!-- <a href="/user/login"><button>Login</button></a> -->
-            <a href="/user/logout"><button>Logout</button></a>
-        </div>
+  <div class="header-menu">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="dropdown-menu" id="dropdownMenu">
+      <a href="/user/logout"><button>Logout</button></a>
+      <!-- Add more menu items here if needed -->
+    </nav>
+  </div>
 </header>
+
+<script>
+  // Hamburger menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    hamburgerBtn.addEventListener('click', function() {
+      dropdownMenu.classList.toggle('open');
+    });
+    // Optional: close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!hamburgerBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('open');
+      }
+    });
+  });
+</script>
