@@ -1,0 +1,63 @@
+/* Header and top-right action buttons */
+header {
+	position: relative;
+	padding: 12px 20px;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+header h1 {
+	margin: 0;
+	font-size: 1.4rem;
+	line-height: 1;
+}
+
+/* Position the buttons container in the top-right */
+header .buttons {
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	transform: translateY(-50%);
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+/* Make anchor+button pairs look tidy */
+header .buttons a {
+	text-decoration: none;
+}
+
+header .buttons a button {
+	background: #1976d2;
+	color: #fff;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+header .buttons a button:hover {
+	background: #155fa0;
+}
+
+/* Smaller devices: collapse into a single stacked column */
+@media (max-width: 520px) {
+	header {
+		padding-right: 16px;
+	}
+	header .buttons {
+		position: static;
+		transform: none;
+		margin-top: 8px;
+		justify-content: flex-end;
+		width: 100%;
+	}
+}
+
+/* Optional: keep header content readable if you have longer titles */
+@media (max-width: 360px) {
+	header h1 { font-size: 1.1rem; }
+	header .buttons a button { padding: 6px 8px; font-size: 0.85rem; }
+}
