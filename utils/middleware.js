@@ -8,9 +8,9 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const hikeController = require('../controllers/hike');
 const userController = require('../controllers/user');
+const homeController = require('../controllers/home');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-
 
 // ---------- ---------- ---------- ---------- ---------- //
 // ~ MIDDLEWARE FUNCTION ~ //
@@ -28,6 +28,7 @@ function registerGlobalMiddleware(app) {
     }));
     app.use('/hikes', hikeController);
     app.use('/user', userController);
+    app.use('/', homeController);
 }
 
 

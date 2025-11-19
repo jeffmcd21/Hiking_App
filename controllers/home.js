@@ -3,22 +3,23 @@
 // ~ IMPORT DEPENDENCIES ~ //
 // ---------- ---------- ---------- ---------- ---------- //
 const express = require('express');
-const registerGlobalMiddleware = require('./utils/middleware')
-
-// ---------- ---------- ---------- ---------- ---------- //
-// ~ EXPRESS APP CONFIGURATION ~ //
-// ---------- ---------- ---------- ---------- ---------- //
-const app = express();
 
 
 // ---------- ---------- ---------- ---------- ---------- //
-// ~ REGISTER GLOBAL MIDDLEWARE ~ //
+// ~ EXPRESS ROUTER CONFIGURATION ~ //
 // ---------- ---------- ---------- ---------- ---------- //
-registerGlobalMiddleware(app);
+const router = express.Router();
 
 
 // ---------- ---------- ---------- ---------- ---------- //
-// ~ SERVER LISTENER ~ //
+// ~ HOME ROUTE ~ //
 // ---------- ---------- ---------- ---------- ---------- //
-const PORT = process.env.PORT
-app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
+router.get('/', (req, res) => {
+    res.redirect('/user/login');
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
+// ~ EXPORT HOME ROUTER ~ //
+// ---------- ---------- ---------- ---------- ---------- //
+module.exports = router;
