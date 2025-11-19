@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <!-- <a href="/mountains"><button>Back to Main</button></a> -->
+    <style>
+
+        .edit {
+          position: relative;
+          /* display: flex;
+          flex-direction: wrap;
+          background-color: forestgreen;
+          justify-content: center; */
+        }
+    
+        .overlay-form {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); /* Center the form */
+          background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+          padding: 20px;
+          border-radius: 5px;
+          /* Adjust z-index if needed */
+        }
+    
+        .full-width-image {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+        }
+    
+      </style>
+<body>
+    <%- include("../partials/header.ejs") %>
+
+    <main>
+        <div class="edit">
+            <img src="https://i.imgur.com/R2scwV7.jpg" class="full-width-image">
+            <!-- https://3.bp.blogspot.com/-FJIfPGG0oMU/Up_IPn42XCI/AAAAAAAAV6s/ytglLLEUy8Y/s1600/20131201+HaBa+NG.jpg -->
+            <div class="overlay-form">
+            <form action="/hikes/<%= hike._id %>?_method=PUT" method="POST">
+                <fieldset>
+                    <legend>Edit <%= hike.hikeName %></legend><br>
+                    <label>Hike To:<input
+                        type="text"
+                        name="hikeName"
+                        placeholder="hike to what or where"
+                        value="<%= hike.hikeName %>"/></label><br>
+                    <label>Rank:<input
+                        type="number"
+                        name="rank"
+                        placeholder="rank order"
+                        value="<%= hike.rank %>"/></label><br>
+                    <label>Elevation:<input
+                        type="number"
+                        name="elevation"
+                        placeholder="high in feet"
+                        value="<%= hike.elevation %>"/></label><br>
+                    <label>Hike Complete:<input
+                        type="checkbox"
+                        name="hikeComplete"
+                        <%= hike.hikeComplete ? "checked" : "" %>/></label><br>
+                    <label>Date Complete:<input
+                        type="date"
+                        name="dateComplete"
+                        placeholder="date"
+                        value="<%= hike.dateComplete ? hike.dateComplete : '1900-01-01' %>"/></label><br>
+                    <label>Image:<input
+                        type="text"
+                        name="img"
+                        placeholder="image"
+                        value="<%= hike.img %>"/></label>
+                </fieldset>
+                <!-- <input type="submit" value="Update Adventure"/> -->
+                <button>Update Adventure</button>
+            </form>
+            </div>
+            <button><a href="/hikes/<%= hike._id %>">Back to Hike Details</a></button>
+        </div>
+    </main>
+</body>
+</html>

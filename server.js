@@ -95,6 +95,70 @@ app.get('/hikes', async (req, res) => {
 
 
 // ---------- ---------- ---------- ---------- ---------- //
+// ~ NEW ROUTE ~ //
+app.get('/hikes/new', (req, res) => {
+    res.render('hikes/new.ejs');
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
+// ~ DELETE ROUTE ~ //
+app.delete('/hikes/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Hike.findByIdAndDelete(id);
+        res.redirect('/hikes');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
+// ~ UPDATE ROUTE ~ //
+app.put('/hikes/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        req.body.hikeComplete = req.body.hikeComplete === 'on' ? true : false;
+        const updatedHike = await Hike.findByIdAndUpdate(id, req.body, { new: true });
+        res.redirect(`/hikes/${id}`);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
+// ~ CREATE ROUTE ~ //
+app.post('/hikes', async (req, res) => {
+    try {
+        req.body.hikeComplete = req.body.hikeComplete === 'on' ? true : false;
+        const newHike = await Hike.create(req.body);
+        res.redirect('/hikes');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
+// ~ EDIT ROUTE ~ //
+app.get('/hikes/:id/edit', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const hike = await Hike.findById(id);
+        res.render('hikes/edit.ejs', { hike });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
 // ~ SHOW ROUTE ~ //
 app.get('/hikes/:id', async (req, res) => {
     try {
