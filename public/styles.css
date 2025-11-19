@@ -1,3 +1,132 @@
+/* Theme variables */
+:root {
+	--bg: #fff;
+	--text: #222;
+	--header-bg: #fff;
+	--header-shadow: 0 1px 3px rgba(0,0,0,0.08);
+	--button-bg: #1976d2;
+	--button-text: #fff;
+	--button-hover-bg: #155fa0;
+	--menu-bg: #fff;
+	--menu-hover-bg: #f0f4fa;
+}
+
+[data-theme="dark"] {
+	--bg: #181a20;
+	--text: #e0e0e0;
+	--header-bg: #23252b;
+	--header-shadow: 0 1px 6px rgba(0,0,0,0.25);
+	--button-bg: #333a4d;
+	--button-text: #ffd700;
+	--button-hover-bg: #444c5e;
+	--menu-bg: #23252b;
+	--menu-hover-bg: #2c2f36;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	transition: background 0.2s, color 0.2s;
+}
+
+header {
+	background: var(--header-bg);
+	box-shadow: var(--header-shadow);
+}
+
+header h1 {
+	color: var(--text);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+/* Hamburger menu styles */
+.header-menu {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+}
+
+.hamburger {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 36px;
+	height: 36px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+.hamburger span {
+	display: block;
+	width: 26px;
+	height: 3px;
+	margin: 4px 0;
+	background: var(--button-bg);
+	border-radius: 2px;
+	transition: 0.3s;
+}
+
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 44px;
+	right: 0;
+	background: var(--menu-bg);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+	border-radius: 6px;
+	min-width: 120px;
+	padding: 8px 0;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.dropdown-menu.open {
+	display: flex;
+}
+.dropdown-menu a {
+	width: 100%;
+	text-align: left;
+	text-decoration: none;
+	padding: 0 16px;
+}
+.dropdown-menu a button {
+	width: 100%;
+	background: none;
+	color: var(--button-bg);
+	border: none;
+	padding: 8px 0;
+	text-align: left;
+	font-size: 1rem;
+	cursor: pointer;
+}
+.dropdown-menu a button:hover {
+	background: var(--menu-hover-bg);
+	color: var(--button-hover-bg);
+}
+
+@media (max-width: 520px) {
+	.header-menu {
+		top: 8px;
+		right: 8px;
+	}
+	.dropdown-menu {
+		min-width: 100px;
+		font-size: 0.95rem;
+	}
+}
 /* Hamburger menu styles */
 .header-menu {
 	position: absolute;

@@ -3,6 +3,7 @@
   <h1>The Hike Tracker App</h1>
 
   <div class="header-menu">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">🌙</button>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
       <span></span>
       <span></span>
@@ -29,5 +30,21 @@
         dropdownMenu.classList.remove('open');
       }
     });
+
+    // Dark/light mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(mode) {
+      document.documentElement.setAttribute('data-theme', mode);
+      localStorage.setItem('theme', mode);
+      themeToggle.textContent = mode === 'dark' ? '☀️' : '🌙';
+    }
+    themeToggle.addEventListener('click', function() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(current === 'light' ? 'dark' : 'light');
+    });
+    // On load, set theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme);
+    else setTheme('light');
   });
 </script>
