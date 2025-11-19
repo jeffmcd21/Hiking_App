@@ -12,6 +12,19 @@ const router = express.Router();
 
 
 // ---------- ---------- ---------- ---------- ---------- //
+// ~ ROUTER MIDDLEWARE ~ //
+// ---------- ---------- ---------- ---------- ---------- //
+router.use((req, res, next) => {
+    console.table(req.session)
+    if(req.session.loggedIn) {
+        next();
+    } else {
+    res.redirect("/user/login")
+    }
+});
+
+
+// ---------- ---------- ---------- ---------- ---------- //
 // ~ ROUTES ~ //
 // ---------- ---------- ---------- ---------- ---------- //
 // ~ SEED ROUTE ~ //
@@ -36,7 +49,10 @@ const router = express.Router();
 // ~ INDEX ROUTE ~ //
 router.get('/', async (req, res) => {
     try {
-        const hikes = await Hike.find({});
+        const username = req.session.username;
+        const hikes = await Hike.find({ username });
+        // const hikesComplete = await Hike.find({ hikeComplete: true, username });
+        // const hikesIncomplete = await Hike.find({ hikeComplete: false, username });
         res.render('hikes/index.ejs', { hikes });
     } catch (error) {
         console.log(error);
@@ -72,6 +88,7 @@ router.put('/:id', async (req, res) => {
     try {
         const id = req.params.id;
         req.body.hikeComplete = req.body.hikeComplete === 'on' ? true : false;
+        req.body.username = req.session.username;
         const updatedHike = await Hike.findByIdAndUpdate(id, req.body, { new: true });
         res.redirect(`/hikes/${id}`);
     } catch (error) {
@@ -86,6 +103,7 @@ router.put('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         req.body.hikeComplete = req.body.hikeComplete === 'on' ? true : false;
+        req.body.username = req.session.username;
         const newHike = await Hike.create(req.body);
         res.redirect('/hikes');
     } catch (error) {

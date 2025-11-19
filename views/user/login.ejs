@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <a href="/user/signup"><button class="createAccount">Create Account</button></a>
+<body>
+    <main>
+      <div class="login">
+        <img src="https://dec.ny.gov/sites/default/files/styles/hero_background/public/2023-11/Adk%20Reg%20Kathryn%20Harrell%20178045064.jpeg?h=d8279931&itok=-5ye5KFQ" alt="Image description" class="full-width-image">
+        <div class="overlay-form">
+        <form action="/user/login" method="post">
+          <fieldset>
+            <legend>User Login</legend>
+            <!-- <label
+              >NAME: <input type="text" name="name" required />
+            </label> -->
+            <label
+              >USERNAME: <input type="text" name="username" required />
+            </label>
+            <label
+              >PASSWORD: <input type="password" name="password" required />
+            </label>
+            <input type="submit" value="Login" />
+          </fieldset>
+        </form>
+        </div>
+      </div>
+    </main>    
+</body>
+</html>
