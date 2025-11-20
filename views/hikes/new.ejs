@@ -2,37 +2,148 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include("../partials/head.ejs") %>
+    <style>
+        /* Full-screen modal overlay */
+        .new-hike-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+        }
+        
+        /* Modal box */
+        .modal-form {
+          position: relative;
+          background: var(--menu-bg);
+          color: var(--text);
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          max-width: 500px;
+          width: 90%;
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+        
+        /* Close button */
+        .close-btn {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: none;
+          border: none;
+          font-size: 1.8rem;
+          cursor: pointer;
+          color: var(--text);
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+        }
+        
+        .close-btn:hover {
+          opacity: 0.7;
+        }
+        
+        .modal-form form fieldset {
+          border: none;
+          padding: 0;
+        }
+        
+        .modal-form legend {
+          font-size: 1.3rem;
+          font-weight: bold;
+          margin-bottom: 16px;
+          color: var(--text);
+        }
+        
+        .modal-form label {
+          display: block;
+          margin: 12px 0;
+          font-weight: 500;
+          color: var(--text);
+        }
+        
+        .modal-form input {
+          width: 100%;
+          padding: 8px;
+          margin-top: 4px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background: var(--bg);
+          color: var(--text);
+          box-sizing: border-box;
+        }
+        
+        .modal-form input[type="checkbox"] {
+          width: auto;
+          margin-right: 8px;
+        }
+        
+        .modal-form input[type="submit"] {
+          background: var(--button-bg);
+          color: var(--button-text);
+          border: none;
+          padding: 10px 20px;
+          margin-top: 16px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 1rem;
+          width: 100%;
+        }
+        
+        .modal-form input[type="submit"]:hover {
+          background: var(--button-hover-bg);
+        }
+        
+        @media (max-width: 600px) {
+          .modal-form {
+            width: 95%;
+            padding: 20px;
+          }
+        }
+    </style>
 
 <body>
     <%- include("../partials/header.ejs") %>
     <main>
-        <div>
-        <h2>Add a New Hike</h2>
-        <form action="/hikes" method="POST">
-            <fieldset>
-                <legend>Add a New Hike</legend>
-                <label for="hikeName">Hike Name:</label>
-                <input type="text" id="hikeName" name="hikeName" required />
+        <div class="new-hike-container">
+            <div class="modal-form">
+                <a href="/hikes" class="close-btn">✕</a>
+                <form action="/hikes" method="POST">
+                    <fieldset>
+                        <legend>Add a New Hike</legend>
+                        <label for="hikeName">Hike Name:</label>
+                        <input type="text" id="hikeName" name="hikeName" required />
 
-                <label for="rank">Rank:</label>
-                <input type="number" id="rank" name="rank" required />
+                        <label for="rank">Rank:</label>
+                        <input type="number" id="rank" name="rank" required />
 
-                <label for="elevation">Elevation (ft):</label>
-                <input type="number" id="elevation" name="elevation" required />
+                        <label for="elevation">Elevation (ft):</label>
+                        <input type="number" id="elevation" name="elevation" required />
 
-                <label for="hikeComplete">Completed:</label>
-                <input type="checkbox" id="hikeComplete" name="hikeComplete" />
+                        <label for="hikeComplete">Completed:</label>
+                        <input type="checkbox" id="hikeComplete" name="hikeComplete" />
 
-                <label for="dateComplete">Date Completed:</label>
-                <input type="date" id="dateComplete" name="dateComplete" />
+                        <label for="dateComplete">Date Completed:</label>
+                        <input type="date" id="dateComplete" name="dateComplete" />
 
-                <label for="img">Image URL:</label>
-                <input type="text" id="img" name="img" />
+                        <label for="img">Image URL:</label>
+                        <input type="text" id="img" name="img" />
 
-                <input type="submit" value="Add Hike" />
-            </fieldset>
-        </form>
-        <button><a href="/hikes">Back to All Hikes</a></button>
+                        <input type="submit" value="Add Hike" />
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </main>
     
