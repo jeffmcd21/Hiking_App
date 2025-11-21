@@ -267,3 +267,20 @@ header .buttons a button:hover {
 	header h1 { font-size: 1.1rem; }
 	header .buttons a button { padding: 6px 8px; font-size: 0.85rem; }
 }
+
+/* Index Page */
+.mountains-hiked {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 25px;
+	margin-top: 20px;
+	padding: 20px;
+	box-shadow: #444c5e 0px 0px 10px 10px;
+}
+
+.show-link {
+	text-align: center;
+	display: block;
+	margin-top: 10px;
+	
+}
